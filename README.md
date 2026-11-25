@@ -34,6 +34,15 @@ ZIG_URL=... ZIG_SHA256=... LLVM_PREFIX=$WORK/llvm-23.1.6-xtensa scripts/build-zi
 ```
 Zig 0.17.x needs LLVM 22.x, Zig master (0.18.0-dev) needs LLVM 23.x (`find_package(llvm N)` in each `CMakeLists.txt`); set `LLVM_VERSION` and `LLVM_SHA256` for `build-llvm.sh` accordingly. The scripts repeat the commands that were run, but they were not re-run as scripts.
 
+## Calling ESP-IDF from Zig (`example-direct/`)
+`@cImport` is gone in the Zig master build (`invalid builtin function: '@cImport'`); `zig translate-c` is the replacement. `example-direct/gen-c.sh` translates `driver/i2c_master.h` into `main/c.zig` using the include paths from the ESP-IDF build's `compile_commands.json`. It was run as written and its output matched the one produced by hand (4530 lines, identical apart from comment lines).
+
+Findings from translating this header with `-target xtensa-freestanding-none -mcpu=esp32`:
+- The newlib headers need the compiler's predefined macros (taken from `xtensa-esp32s3-elf-gcc -dM -E`) and a `typedef unsigned int wint_t;`; without them translation stops at `Endianess not declared!!` and then `unknown type name 'wint_t'`.
+- `i2c_master_bus_config_t` and `i2c_device_config_t` contain bitfields and come out as `opaque {}` (`warning: struct demoted to opaque type - has bitfield`). `app.zig` declares both by hand as `extern struct`s, and `shim.c` exports `sizeof`/`offsetof` values so the app can compare them with `@sizeOf`/`@offsetOf` at boot.
+
+Observed on an ESP32-S3 board: the app printed `LAYOUT ok=1` (all 15 values equal), `i2c_new_master_bus rc=0`, `i2c_master_bus_add_device rc=0`, and then the time read from a PCF85063A RTC once per second, matching the host clock to the second. The example is built like `example/` (`zig` on `PATH`, `idf.py set-target esp32s3`, `idf.py build`); its GPIO numbers (SCL 14, SDA 15) and the RTC address (0x51) are specific to one board. Other headers were not translated.
+
 ## Not tested
 - Anything beyond `app_main` printing text: no I2C, SPI, display, Wi-Fi, BLE, deep or light sleep from Zig code.
 - Whether code built with `-mcpu=esp32` is correct on ESP32-S3 in general (the S3 differs from the ESP32).
