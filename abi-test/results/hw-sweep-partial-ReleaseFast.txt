@@ -1,0 +1,934 @@
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x15 (USB_UART_CHIP_RESET),boot:0x2b (SPI_FAST_FLASH_BOOT)
+Saved PC:0x403779b6
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1710
+load:0x403c8700,len:0xed4
+load:0x403cb700,len:0x31d4
+entry 0x403c8954
+I (24) boot: ESP-IDF v5.5-beta1-215-gcf8dad0746-dirt 2nd stage bootloader
+I (25) boot: compile time Aug  4 2025 18:11:27
+I (25) boot: Multicore bootloader
+I (25) boot: chip revision: v0.2
+I (25) boot: efuse block revision: v1.3
+I (26) qio_mode: Enabling default flash chip QIO
+I (26) boot.esp32s3: Boot SPI Speed : 80MHz
+I (26) boot.esp32s3: SPI Mode       : QIO
+I (26) boot.esp32s3: SPI Flash Size : 32MB
+I (26) boot: Enabling RNG early entropy source...
+I (27) boot: Partition Table:
+I (27) boot: ## Label            Usage          Type ST Offset   Length
+I (27) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (28) boot:  1 otadata          OTA data         01 00 0000f000 00002000
+I (28) boot:  2 phy_init         RF data          01 01 00011000 00001000
+I (28) boot:  3 model            Unknown data     01 82 00012000 000ee000
+I (29) boot:  4 factory          factory app      00 00 00100000 00900000
+I (29) boot:  5 ota_0            OTA app          00 10 00a00000 00600000
+I (30) boot:  6 ota_1            OTA app          00 11 01000000 00600000
+I (30) boot:  7 storage          Unknown data     01 82 01600000 00600000
+I (31) boot: End of partition table
+I (31) boot: Defaulting to factory image
+I (31) esp_image: segment 0: paddr=00100020 vaddr=3c030020 size=0a5d0h ( 42448) map
+I (38) esp_image: segment 1: paddr=0010a5f8 vaddr=3fc92000 size=02dc0h ( 11712) load
+I (41) esp_image: segment 2: paddr=0010d3c0 vaddr=40374000 size=02c58h ( 11352) load
+I (43) esp_image: segment 3: paddr=00110020 vaddr=42000020 size=2c7f0h (182256) map
+I (71) esp_image: segment 4: paddr=0013c818 vaddr=40376c58 size=0b308h ( 45832) load
+I (80) esp_image: segment 5: paddr=00147b28 vaddr=50000040 size=00020h (    32) load
+I (86) boot: Loaded app from partition at offset 0x100000
+I (86) boot: Disabling RNG early entropy source...
+I (87) cpu_start: Multicore app
+I (96) cpu_start: Pro cpu start user code
+I (96) cpu_start: cpu freq: 240000000 Hz
+I (96) app_init: Application information:
+I (96) app_init: Project name:     abi_test
+I (96) app_init: App version:      abe6f3b
+I (96) app_init: Compile time:     Nov 26 2026 23:03:31
+I (97) app_init: ELF file SHA256:  13fa545b0...
+I (97) app_init: ESP-IDF:          v5.5.5
+I (97) efuse_init: Min chip rev:     v0.0
+I (97) efuse_init: Max chip rev:     v0.99 
+I (97) efuse_init: Chip rev:         v0.2
+I (97) heap_init: Initializing. RAM available for dynamic allocation:
+I (98) heap_init: At 3FC95678 len 00054098 (336 KiB): RAM
+I (98) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (98) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (98) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (99) spi_flash: detected chip: gd
+I (99) spi_flash: flash io: qio
+I (99) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (99) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (100) main_task: Started on CPU0
+I (100) main_task: Calling app_main()
+ABI c->z B5 ret                  CRASH
+ABI BEGIN resume_from=20
+ABI c->z B6 first                FAIL
+ABI c->z B6 odd                  FAIL
+ABI c->z B6 late                 FAIL
+Guru Meditation Error: Core  0 panic'ed (StoreProhibited). Exception was unhandled.
+
+Core  0 register dump:
+PC      : 0x4202a02d  PS      : 0x00060c30  A0      : 0x8201f35f  A1      : 0x3fc99040  
+A2      : 0x00000028  A3      : 0x00000000  A4      : 0x00000000  A5      : 0x40bc5a00  
+A6      : 0x00000000  A7      : 0x3fc99040  A8      : 0x00000005  A9      : 0x3fc99030  
+A10     : 0x50000000  A11     : 0x3c035aac  A12     : 0x00000000  A13     : 0x0000ff00  
+A14     : 0x00ff0000  A15     : 0xff000000  SAR     : 0x00000006  EXCCAUSE: 0x0000001d  
+EXCVADDR: 0x0000002d  LBEG    : 0x400557e1  LEND    : 0x400557e5  LCOUNT  : 0x00000000  
+
+
+Backtrace: 0x4202a02a:0x3fc99040 0x4201f35c:0x3fc99060 0x42015d43:0x3fc99120 0x4202c13b:0x3fc99140 0x403799ed:0x3fc99170
+
+
+
+
+ELF file SHA256: 13fa545b0
+
+Rebooting...
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0x2b (SPI_FAST_FLASH_BOOT)
+Saved PC:0x40379120
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1710
+load:0x403c8700,len:0xed4
+load:0x403cb700,len:0x31d4
+entry 0x403c8954
+I (24) boot: ESP-IDF v5.5-beta1-215-gcf8dad0746-dirt 2nd stage bootloader
+I (24) boot: compile time Aug  4 2025 18:11:27
+I (24) boot: Multicore bootloader
+I (25) boot: chip revision: v0.2
+I (25) boot: efuse block revision: v1.3
+I (25) qio_mode: Enabling default flash chip QIO
+I (25) boot.esp32s3: Boot SPI Speed : 80MHz
+I (25) boot.esp32s3: SPI Mode       : QIO
+I (26) boot.esp32s3: SPI Flash Size : 32MB
+I (26) boot: Enabling RNG early entropy source...
+I (26) boot: Partition Table:
+I (26) boot: ## Label            Usage          Type ST Offset   Length
+I (27) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (27) boot:  1 otadata          OTA data         01 00 0000f000 00002000
+I (28) boot:  2 phy_init         RF data          01 01 00011000 00001000
+I (28) boot:  3 model            Unknown data     01 82 00012000 000ee000
+I (29) boot:  4 factory          factory app      00 00 00100000 00900000
+I (29) boot:  5 ota_0            OTA app          00 10 00a00000 00600000
+I (29) boot:  6 ota_1            OTA app          00 11 01000000 00600000
+I (30) boot:  7 storage          Unknown data     01 82 01600000 00600000
+I (30) boot: End of partition table
+I (31) boot: Defaulting to factory image
+I (31) esp_image: segment 0: paddr=00100020 vaddr=3c030020 size=0a5d0h ( 42448) map
+I (38) esp_image: segment 1: paddr=0010a5f8 vaddr=3fc92000 size=02dc0h ( 11712) load
+I (40) esp_image: segment 2: paddr=0010d3c0 vaddr=40374000 size=02c58h ( 11352) load
+I (43) esp_image: segment 3: paddr=00110020 vaddr=42000020 size=2c7f0h (182256) map
+I (70) esp_image: segment 4: paddr=0013c818 vaddr=40376c58 size=0b308h ( 45832) load
+I (79) esp_image: segment 5: paddr=00147b28 vaddr=50000040 size=00020h (    32) load
+I (85) boot: Loaded app from partition at offset 0x100000
+I (86) boot: Disabling RNG early entropy source...
+I (86) cpu_start: Multicore app
+I (95) cpu_start: Pro cpu start user code
+I (95) cpu_start: cpu freq: 240000000 Hz
+I (96) app_init: Application information:
+I (96) app_init: Project name:     abi_test
+I (96) app_init: App version:      abe6f3b
+I (96) app_init: Compile time:     Nov 26 2026 23:03:31
+I (96) app_init: ELF file SHA256:  13fa545b0...
+I (96) app_init: ESP-IDF:          v5.5.5
+I (96) efuse_init: Min chip rev:     v0.0
+I (97) efuse_init: Max chip rev:     v0.99 
+I (97) efuse_init: Chip rev:         v0.2
+I (97) heap_init: Initializing. RAM available for dynamic allocation:
+I (97) heap_init: At 3FC95678 len 00054098 (336 KiB): RAM
+I (97) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (97) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (98) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (98) spi_flash: detected chip: gd
+I (98) spi_flash: flash io: qio
+I (99) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (99) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (99) main_task: Started on CPU0
+I (99) main_task: Calling app_main()
+ABI c->z B6 ret                  CRASH
+ABI BEGIN resume_from=24
+ABI c->z B7 first                FAIL
+ABI c->z B7 odd                  FAIL
+ABI c->z B7 late                 FAIL
+Guru Meditation Error: Core  0 panic'ed (StoreProhibited). Exception was unhandled.
+
+Core  0 register dump:
+PC      : 0x42029ffd  PS      : 0x00060c30  A0      : 0x8201f513  A1      : 0x3fc99040  
+A2      : 0x00000028  A3      : 0x00000000  A4      : 0x00000000  A5      : 0x40bcc300  
+A6      : 0x00000000  A7      : 0x3fc99040  A8      : 0x00000006  A9      : 0x3fc99030  
+A10     : 0x50000000  A11     : 0x3c035ae4  A12     : 0x00000000  A13     : 0x0000ff00  
+A14     : 0x00ff0000  A15     : 0xff000000  SAR     : 0x00000006  EXCCAUSE: 0x0000001d  
+EXCVADDR: 0x0000002e  LBEG    : 0x400557e1  LEND    : 0x400557e5  LCOUNT  : 0x00000000  
+
+
+Backtrace: 0x42029ffa:0x3fc99040 0x4201f510:0x3fc99060 0x42015d43:0x3fc99120 0x4202c13b:0x3fc99140 0x403799ed:0x3fc99170
+
+
+
+
+ELF file SHA256: 13fa545b0
+
+Rebooting...
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0x2b (SPI_FAST_FLASH_BOOT)
+Saved PC:0x40379120
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1710
+load:0x403c8700,len:0xed4
+load:0x403cb700,len:0x31d4
+entry 0x403c8954
+I (24) boot: ESP-IDF v5.5-beta1-215-gcf8dad0746-dirt 2nd stage bootloader
+I (24) boot: compile time Aug  4 2025 18:11:27
+I (24) boot: Multicore bootloader
+I (25) boot: chip revision: v0.2
+I (25) boot: efuse block revision: v1.3
+I (25) qio_mode: Enabling default flash chip QIO
+I (25) boot.esp32s3: Boot SPI Speed : 80MHz
+I (25) boot.esp32s3: SPI Mode       : QIO
+I (26) boot.esp32s3: SPI Flash Size : 32MB
+I (26) boot: Enabling RNG early entropy source...
+I (26) boot: Partition Table:
+I (26) boot: ## Label            Usage          Type ST Offset   Length
+I (27) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (27) boot:  1 otadata          OTA data         01 00 0000f000 00002000
+I (28) boot:  2 phy_init         RF data          01 01 00011000 00001000
+I (28) boot:  3 model            Unknown data     01 82 00012000 000ee000
+I (28) boot:  4 factory          factory app      00 00 00100000 00900000
+I (29) boot:  5 ota_0            OTA app          00 10 00a00000 00600000
+I (29) boot:  6 ota_1            OTA app          00 11 01000000 00600000
+I (30) boot:  7 storage          Unknown data     01 82 01600000 00600000
+I (30) boot: End of partition table
+I (30) boot: Defaulting to factory image
+I (31) esp_image: segment 0: paddr=00100020 vaddr=3c030020 size=0a5d0h ( 42448) map
+I (38) esp_image: segment 1: paddr=0010a5f8 vaddr=3fc92000 size=02dc0h ( 11712) load
+I (40) esp_image: segment 2: paddr=0010d3c0 vaddr=40374000 size=02c58h ( 11352) load
+I (43) esp_image: segment 3: paddr=00110020 vaddr=42000020 size=2c7f0h (182256) map
+I (70) esp_image: segment 4: paddr=0013c818 vaddr=40376c58 size=0b308h ( 45832) load
+I (79) esp_image: segment 5: paddr=00147b28 vaddr=50000040 size=00020h (    32) load
+I (85) boot: Loaded app from partition at offset 0x100000
+I (85) boot: Disabling RNG early entropy source...
+I (86) cpu_start: Multicore app
+I (95) cpu_start: Pro cpu start user code
+I (95) cpu_start: cpu freq: 240000000 Hz
+I (95) app_init: Application information:
+I (96) app_init: Project name:     abi_test
+I (96) app_init: App version:      abe6f3b
+I (96) app_init: Compile time:     Nov 26 2026 23:03:31
+I (96) app_init: ELF file SHA256:  13fa545b0...
+I (96) app_init: ESP-IDF:          v5.5.5
+I (96) efuse_init: Min chip rev:     v0.0
+I (96) efuse_init: Max chip rev:     v0.99 
+I (97) efuse_init: Chip rev:         v0.2
+I (97) heap_init: Initializing. RAM available for dynamic allocation:
+I (97) heap_init: At 3FC95678 len 00054098 (336 KiB): RAM
+I (97) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (97) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (97) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (98) spi_flash: detected chip: gd
+I (98) spi_flash: flash io: qio
+I (98) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (99) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (99) main_task: Started on CPU0
+I (99) main_task: Calling app_main()
+ABI c->z B7 ret                  CRASH
+ABI BEGIN resume_from=28
+ABI c->z B8 first                FAIL
+ABI c->z B8 odd                  FAIL
+ABI c->z B8 late                 FAIL
+Guru Meditation Error: Core  0 panic'ed (StoreProhibited). Exception was unhandled.
+
+Core  0 register dump:
+PC      : 0x42029fc5  PS      : 0x00060c30  A0      : 0x8201f6cc  A1      : 0x3fc99040  
+A2      : 0x00000028  A3      : 0x00000000  A4      : 0x00000000  A5      : 0x40bd4b00  
+A6      : 0x00000000  A7      : 0x3fc99040  A8      : 0x00000007  A9      : 0x3fc99030  
+A10     : 0x50000000  A11     : 0x3c035b1c  A12     : 0x00000000  A13     : 0x0000ff00  
+A14     : 0x00ff0000  A15     : 0xff000000  SAR     : 0x00000005  EXCCAUSE: 0x0000001d  
+EXCVADDR: 0x0000002f  LBEG    : 0x400557e1  LEND    : 0x400557e5  LCOUNT  : 0x00000000  
+
+
+Backtrace: 0x42029fc2:0x3fc99040 0x4201f6c9:0x3fc99060 0x42015d43:0x3fc99120 0x4202c13b:0x3fc99140 0x403799ed:0x3fc99170
+
+
+
+
+ELF file SHA256: 13fa545b0
+
+Rebooting...
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0x2b (SPI_FAST_FLASH_BOOT)
+Saved PC:0x40379120
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1710
+load:0x403c8700,len:0xed4
+load:0x403cb700,len:0x31d4
+entry 0x403c8954
+I (24) boot: ESP-IDF v5.5-beta1-215-gcf8dad0746-dirt 2nd stage bootloader
+I (24) boot: compile time Aug  4 2025 18:11:27
+I (24) boot: Multicore bootloader
+I (25) boot: chip revision: v0.2
+I (25) boot: efuse block revision: v1.3
+I (25) qio_mode: Enabling default flash chip QIO
+I (25) boot.esp32s3: Boot SPI Speed : 80MHz
+I (25) boot.esp32s3: SPI Mode       : QIO
+I (26) boot.esp32s3: SPI Flash Size : 32MB
+I (26) boot: Enabling RNG early entropy source...
+I (26) boot: Partition Table:
+I (26) boot: ## Label            Usage          Type ST Offset   Length
+I (27) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (27) boot:  1 otadata          OTA data         01 00 0000f000 00002000
+I (28) boot:  2 phy_init         RF data          01 01 00011000 00001000
+I (28) boot:  3 model            Unknown data     01 82 00012000 000ee000
+I (28) boot:  4 factory          factory app      00 00 00100000 00900000
+I (29) boot:  5 ota_0            OTA app          00 10 00a00000 00600000
+I (29) boot:  6 ota_1            OTA app          00 11 01000000 00600000
+I (30) boot:  7 storage          Unknown data     01 82 01600000 00600000
+I (30) boot: End of partition table
+I (30) boot: Defaulting to factory image
+I (31) esp_image: segment 0: paddr=00100020 vaddr=3c030020 size=0a5d0h ( 42448) map
+I (37) esp_image: segment 1: paddr=0010a5f8 vaddr=3fc92000 size=02dc0h ( 11712) load
+I (40) esp_image: segment 2: paddr=0010d3c0 vaddr=40374000 size=02c58h ( 11352) load
+I (43) esp_image: segment 3: paddr=00110020 vaddr=42000020 size=2c7f0h (182256) map
+I (70) esp_image: segment 4: paddr=0013c818 vaddr=40376c58 size=0b308h ( 45832) load
+I (79) esp_image: segment 5: paddr=00147b28 vaddr=50000040 size=00020h (    32) load
+I (85) boot: Loaded app from partition at offset 0x100000
+I (85) boot: Disabling RNG early entropy source...
+I (86) cpu_start: Multicore app
+I (95) cpu_start: Pro cpu start user code
+I (95) cpu_start: cpu freq: 240000000 Hz
+I (95) app_init: Application information:
+I (96) app_init: Project name:     abi_test
+I (96) app_init: App version:      abe6f3b
+I (96) app_init: Compile time:     Nov 26 2026 23:03:31
+I (96) app_init: ELF file SHA256:  13fa545b0...
+I (96) app_init: ESP-IDF:          v5.5.5
+I (96) efuse_init: Min chip rev:     v0.0
+I (96) efuse_init: Max chip rev:     v0.99 
+I (97) efuse_init: Chip rev:         v0.2
+I (97) heap_init: Initializing. RAM available for dynamic allocation:
+I (97) heap_init: At 3FC95678 len 00054098 (336 KiB): RAM
+I (97) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (97) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (97) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (98) spi_flash: detected chip: gd
+I (98) spi_flash: flash io: qio
+I (98) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (99) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (99) main_task: Started on CPU0
+I (99) main_task: Calling app_main()
+ABI c->z B8 ret                  CRASH
+ABI BEGIN resume_from=32
+ABI c->z B9 first                FAIL
+ABI c->z B9 odd                  FAIL
+ABI c->z B9 late                 FAIL
+Guru Meditation Error: Core  0 panic'ed (StoreProhibited). Exception was unhandled.
+
+Core  0 register dump:
+PC      : 0x42029f89  PS      : 0x00060c30  A0      : 0x8201f878  A1      : 0x3fc99040  
+A2      : 0x00000028  A3      : 0x00000000  A4      : 0x00000000  A5      : 0x40bdf600  
+A6      : 0x00000000  A7      : 0x3fc99040  A8      : 0x00000008  A9      : 0x3fc99030  
+A10     : 0x50000000  A11     : 0x3c035b54  A12     : 0x00000000  A13     : 0x0000ff00  
+A14     : 0x00ff0000  A15     : 0xff000000  SAR     : 0x00000005  EXCCAUSE: 0x0000001d  
+EXCVADDR: 0x00000030  LBEG    : 0x400557e1  LEND    : 0x400557e5  LCOUNT  : 0x00000000  
+
+
+Backtrace: 0x42029f86:0x3fc99040 0x4201f875:0x3fc99060 0x42015d43:0x3fc99120 0x4202c13b:0x3fc99140 0x403799ed:0x3fc99170
+
+
+
+
+ELF file SHA256: 13fa545b0
+
+Rebooting...
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0x2b (SPI_FAST_FLASH_BOOT)
+Saved PC:0x40379120
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1710
+load:0x403c8700,len:0xed4
+load:0x403cb700,len:0x31d4
+entry 0x403c8954
+I (24) boot: ESP-IDF v5.5-beta1-215-gcf8dad0746-dirt 2nd stage bootloader
+I (24) boot: compile time Aug  4 2025 18:11:27
+I (24) boot: Multicore bootloader
+I (25) boot: chip revision: v0.2
+I (25) boot: efuse block revision: v1.3
+I (25) qio_mode: Enabling default flash chip QIO
+I (25) boot.esp32s3: Boot SPI Speed : 80MHz
+I (25) boot.esp32s3: SPI Mode       : QIO
+I (26) boot.esp32s3: SPI Flash Size : 32MB
+I (26) boot: Enabling RNG early entropy source...
+I (26) boot: Partition Table:
+I (26) boot: ## Label            Usage          Type ST Offset   Length
+I (27) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (27) boot:  1 otadata          OTA data         01 00 0000f000 00002000
+I (28) boot:  2 phy_init         RF data          01 01 00011000 00001000
+I (28) boot:  3 model            Unknown data     01 82 00012000 000ee000
+I (28) boot:  4 factory          factory app      00 00 00100000 00900000
+I (29) boot:  5 ota_0            OTA app          00 10 00a00000 00600000
+I (29) boot:  6 ota_1            OTA app          00 11 01000000 00600000
+I (30) boot:  7 storage          Unknown data     01 82 01600000 00600000
+I (30) boot: End of partition table
+I (31) boot: Defaulting to factory image
+I (31) esp_image: segment 0: paddr=00100020 vaddr=3c030020 size=0a5d0h ( 42448) map
+I (38) esp_image: segment 1: paddr=0010a5f8 vaddr=3fc92000 size=02dc0h ( 11712) load
+I (40) esp_image: segment 2: paddr=0010d3c0 vaddr=40374000 size=02c58h ( 11352) load
+I (43) esp_image: segment 3: paddr=00110020 vaddr=42000020 size=2c7f0h (182256) map
+I (70) esp_image: segment 4: paddr=0013c818 vaddr=40376c58 size=0b308h ( 45832) load
+I (79) esp_image: segment 5: paddr=00147b28 vaddr=50000040 size=00020h (    32) load
+I (85) boot: Loaded app from partition at offset 0x100000
+I (86) boot: Disabling RNG early entropy source...
+I (86) cpu_start: Multicore app
+I (95) cpu_start: Pro cpu start user code
+I (95) cpu_start: cpu freq: 240000000 Hz
+I (96) app_init: Application information:
+I (96) app_init: Project name:     abi_test
+I (96) app_init: App version:      abe6f3b
+I (96) app_init: Compile time:     Nov 26 2026 23:03:31
+I (96) app_init: ELF file SHA256:  13fa545b0...
+I (96) app_init: ESP-IDF:          v5.5.5
+I (96) efuse_init: Min chip rev:     v0.0
+I (97) efuse_init: Max chip rev:     v0.99 
+I (97) efuse_init: Chip rev:         v0.2
+I (97) heap_init: Initializing. RAM available for dynamic allocation:
+I (97) heap_init: At 3FC95678 len 00054098 (336 KiB): RAM
+I (97) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (97) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (98) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (98) spi_flash: detected chip: gd
+I (98) spi_flash: flash io: qio
+I (99) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (99) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (99) main_task: Started on CPU0
+I (99) main_task: Calling app_main()
+ABI c->z B9 ret                  CRASH
+ABI BEGIN resume_from=36
+ABI c->z B12 first               FAIL
+ABI c->z B12 odd                 FAIL
+ABI c->z B12 late                FAIL
+Guru Meditation Error: Core  0 panic'ed (StoreProhibited). Exception was unhandled.
+
+Core  0 register dump:
+PC      : 0x42029f39  PS      : 0x00060c30  A0      : 0x8201fa7f  A1      : 0x3fc99040  
+A2      : 0x00000028  A3      : 0x00000000  A4      : 0x00000000  A5      : 0x40c07880  
+A6      : 0x00000000  A7      : 0x3fc99040  A8      : 0x0000000b  A9      : 0x3fc99030  
+A10     : 0x50000000  A11     : 0x3c035b94  A12     : 0x00000000  A13     : 0x0000ff00  
+A14     : 0x00ff0000  A15     : 0xff000000  SAR     : 0x00000001  EXCCAUSE: 0x0000001d  
+EXCVADDR: 0x00000033  LBEG    : 0x400557e1  LEND    : 0x400557e5  LCOUNT  : 0x00000000  
+
+
+Backtrace: 0x42029f36:0x3fc99040 0x4201fa7c:0x3fc99060 0x42015d43:0x3fc99120 0x4202c13b:0x3fc99140 0x403799ed:0x3fc99170
+
+
+
+
+ELF file SHA256: 13fa545b0
+
+Rebooting...
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0x2b (SPI_FAST_FLASH_BOOT)
+Saved PC:0x40379120
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1710
+load:0x403c8700,len:0xed4
+load:0x403cb700,len:0x31d4
+entry 0x403c8954
+I (24) boot: ESP-IDF v5.5-beta1-215-gcf8dad0746-dirt 2nd stage bootloader
+I (24) boot: compile time Aug  4 2025 18:11:27
+I (24) boot: Multicore bootloader
+I (25) boot: chip revision: v0.2
+I (25) boot: efuse block revision: v1.3
+I (25) qio_mode: Enabling default flash chip QIO
+I (25) boot.esp32s3: Boot SPI Speed : 80MHz
+I (25) boot.esp32s3: SPI Mode       : QIO
+I (26) boot.esp32s3: SPI Flash Size : 32MB
+I (26) boot: Enabling RNG early entropy source...
+I (26) boot: Partition Table:
+I (26) boot: ## Label            Usage          Type ST Offset   Length
+I (27) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (27) boot:  1 otadata          OTA data         01 00 0000f000 00002000
+I (28) boot:  2 phy_init         RF data          01 01 00011000 00001000
+I (28) boot:  3 model            Unknown data     01 82 00012000 000ee000
+I (28) boot:  4 factory          factory app      00 00 00100000 00900000
+I (29) boot:  5 ota_0            OTA app          00 10 00a00000 00600000
+I (29) boot:  6 ota_1            OTA app          00 11 01000000 00600000
+I (30) boot:  7 storage          Unknown data     01 82 01600000 00600000
+I (30) boot: End of partition table
+I (30) boot: Defaulting to factory image
+I (31) esp_image: segment 0: paddr=00100020 vaddr=3c030020 size=0a5d0h ( 42448) map
+I (38) esp_image: segment 1: paddr=0010a5f8 vaddr=3fc92000 size=02dc0h ( 11712) load
+I (40) esp_image: segment 2: paddr=0010d3c0 vaddr=40374000 size=02c58h ( 11352) load
+I (43) esp_image: segment 3: paddr=00110020 vaddr=42000020 size=2c7f0h (182256) map
+I (70) esp_image: segment 4: paddr=0013c818 vaddr=40376c58 size=0b308h ( 45832) load
+I (79) esp_image: segment 5: paddr=00147b28 vaddr=50000040 size=00020h (    32) load
+I (85) boot: Loaded app from partition at offset 0x100000
+I (85) boot: Disabling RNG early entropy source...
+I (86) cpu_start: Multicore app
+I (95) cpu_start: Pro cpu start user code
+I (95) cpu_start: cpu freq: 240000000 Hz
+I (95) app_init: Application information:
+I (96) app_init: Project name:     abi_test
+I (96) app_init: App version:      abe6f3b
+I (96) app_init: Compile time:     Nov 26 2026 23:03:31
+I (96) app_init: ELF file SHA256:  13fa545b0...
+I (96) app_init: ESP-IDF:          v5.5.5
+I (96) efuse_init: Min chip rev:     v0.0
+I (96) efuse_init: Max chip rev:     v0.99 
+I (97) efuse_init: Chip rev:         v0.2
+I (97) heap_init: Initializing. RAM available for dynamic allocation:
+I (97) heap_init: At 3FC95678 len 00054098 (336 KiB): RAM
+I (97) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (97) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (97) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (98) spi_flash: detected chip: gd
+I (98) spi_flash: flash io: qio
+I (98) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (99) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (99) main_task: Started on CPU0
+I (99) main_task: Calling app_main()
+ABI c->z B12 ret                 CRASH
+ABI BEGIN resume_from=40
+ABI c->z B13 first               FAIL
+ABI c->z B13 odd                 FAIL
+ABI c->z B13 late                FAIL
+Guru Meditation Error: Core  0 panic'ed (StoreProhibited). Exception was unhandled.
+
+Core  0 register dump:
+PC      : 0x42029ee5  PS      : 0x00060c30  A0      : 0x8201fceb  A1      : 0x3fc99040  
+A2      : 0x00000028  A3      : 0x00000000  A4      : 0x00000000  A5      : 0x40c12800  
+A6      : 0x00000000  A7      : 0x3fc99040  A8      : 0x0000000c  A9      : 0x3fc99030  
+A10     : 0x50000000  A11     : 0x3c035bd4  A12     : 0x00000000  A13     : 0x0000ff00  
+A14     : 0x00ff0000  A15     : 0xff000000  SAR     : 0x00000005  EXCCAUSE: 0x0000001d  
+EXCVADDR: 0x00000034  LBEG    : 0x400557e1  LEND    : 0x400557e5  LCOUNT  : 0x00000000  
+
+
+Backtrace: 0x42029ee2:0x3fc99040 0x4201fce8:0x3fc99060 0x42015d43:0x3fc99120 0x4202c13b:0x3fc99140 0x403799ed:0x3fc99170
+
+
+
+
+ELF file SHA256: 13fa545b0
+
+Rebooting...
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0x2b (SPI_FAST_FLASH_BOOT)
+Saved PC:0x40379120
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1710
+load:0x403c8700,len:0xed4
+load:0x403cb700,len:0x31d4
+entry 0x403c8954
+I (24) boot: ESP-IDF v5.5-beta1-215-gcf8dad0746-dirt 2nd stage bootloader
+I (24) boot: compile time Aug  4 2025 18:11:27
+I (24) boot: Multicore bootloader
+I (25) boot: chip revision: v0.2
+I (25) boot: efuse block revision: v1.3
+I (25) qio_mode: Enabling default flash chip QIO
+I (25) boot.esp32s3: Boot SPI Speed : 80MHz
+I (25) boot.esp32s3: SPI Mode       : QIO
+I (26) boot.esp32s3: SPI Flash Size : 32MB
+I (26) boot: Enabling RNG early entropy source...
+I (26) boot: Partition Table:
+I (26) boot: ## Label            Usage          Type ST Offset   Length
+I (27) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (27) boot:  1 otadata          OTA data         01 00 0000f000 00002000
+I (28) boot:  2 phy_init         RF data          01 01 00011000 00001000
+I (28) boot:  3 model            Unknown data     01 82 00012000 000ee000
+I (28) boot:  4 factory          factory app      00 00 00100000 00900000
+I (29) boot:  5 ota_0            OTA app          00 10 00a00000 00600000
+I (29) boot:  6 ota_1            OTA app          00 11 01000000 00600000
+I (30) boot:  7 storage          Unknown data     01 82 01600000 00600000
+I (30) boot: End of partition table
+I (30) boot: Defaulting to factory image
+I (31) esp_image: segment 0: paddr=00100020 vaddr=3c030020 size=0a5d0h ( 42448) map
+I (38) esp_image: segment 1: paddr=0010a5f8 vaddr=3fc92000 size=02dc0h ( 11712) load
+I (40) esp_image: segment 2: paddr=0010d3c0 vaddr=40374000 size=02c58h ( 11352) load
+I (43) esp_image: segment 3: paddr=00110020 vaddr=42000020 size=2c7f0h (182256) map
+I (70) esp_image: segment 4: paddr=0013c818 vaddr=40376c58 size=0b308h ( 45832) load
+I (79) esp_image: segment 5: paddr=00147b28 vaddr=50000040 size=00020h (    32) load
+I (85) boot: Loaded app from partition at offset 0x100000
+I (85) boot: Disabling RNG early entropy source...
+I (86) cpu_start: Multicore app
+I (95) cpu_start: Pro cpu start user code
+I (95) cpu_start: cpu freq: 240000000 Hz
+I (95) app_init: Application information:
+I (96) app_init: Project name:     abi_test
+I (96) app_init: App version:      abe6f3b
+I (96) app_init: Compile time:     Nov 26 2026 23:03:31
+I (96) app_init: ELF file SHA256:  13fa545b0...
+I (96) app_init: ESP-IDF:          v5.5.5
+I (96) efuse_init: Min chip rev:     v0.0
+I (97) efuse_init: Max chip rev:     v0.99 
+I (97) efuse_init: Chip rev:         v0.2
+I (97) heap_init: Initializing. RAM available for dynamic allocation:
+I (97) heap_init: At 3FC95678 len 00054098 (336 KiB): RAM
+I (97) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (97) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (98) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (98) spi_flash: detected chip: gd
+I (98) spi_flash: flash io: qio
+I (99) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (99) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (99) main_task: Started on CPU0
+I (99) main_task: Calling app_main()
+ABI c->z B13 ret                 CRASH
+ABI BEGIN resume_from=44
+ABI c->z B16 first               FAIL
+ABI c->z B16 odd                 FAIL
+ABI c->z B16 late                FAIL
+Guru Meditation Error: Core  0 panic'ed (StoreProhibited). Exception was unhandled.
+
+Core  0 register dump:
+PC      : 0x42029e7d  PS      : 0x00060c30  A0      : 0x8201ff6c  A1      : 0x3fc99040  
+A2      : 0x00000028  A3      : 0x00000000  A4      : 0x00000000  A5      : 0x40c3e380  
+A6      : 0x00000000  A7      : 0x3fc99040  A8      : 0x0000000f  A9      : 0x3fc99030  
+A10     : 0x50000000  A11     : 0x3c035c14  A12     : 0x00000000  A13     : 0x0000ff00  
+A14     : 0x00ff0000  A15     : 0xff000000  SAR     : 0x00000004  EXCCAUSE: 0x0000001d  
+EXCVADDR: 0x00000037  LBEG    : 0x400557e1  LEND    : 0x400557e5  LCOUNT  : 0x00000000  
+
+
+Backtrace: 0x42029e7a:0x3fc99040 0x4201ff69:0x3fc99060 0x42015d43:0x3fc99120 0x4202c13b:0x3fc99140 0x403799ed:0x3fc99170
+
+
+
+
+ELF file SHA256: 13fa545b0
+
+Rebooting...
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0x2b (SPI_FAST_FLASH_BOOT)
+Saved PC:0x40379120
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1710
+load:0x403c8700,len:0xed4
+load:0x403cb700,len:0x31d4
+entry 0x403c8954
+I (24) boot: ESP-IDF v5.5-beta1-215-gcf8dad0746-dirt 2nd stage bootloader
+I (24) boot: compile time Aug  4 2025 18:11:27
+I (24) boot: Multicore bootloader
+I (25) boot: chip revision: v0.2
+I (25) boot: efuse block revision: v1.3
+I (25) qio_mode: Enabling default flash chip QIO
+I (25) boot.esp32s3: Boot SPI Speed : 80MHz
+I (25) boot.esp32s3: SPI Mode       : QIO
+I (26) boot.esp32s3: SPI Flash Size : 32MB
+I (26) boot: Enabling RNG early entropy source...
+I (26) boot: Partition Table:
+I (26) boot: ## Label            Usage          Type ST Offset   Length
+I (27) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (27) boot:  1 otadata          OTA data         01 00 0000f000 00002000
+I (28) boot:  2 phy_init         RF data          01 01 00011000 00001000
+I (28) boot:  3 model            Unknown data     01 82 00012000 000ee000
+I (28) boot:  4 factory          factory app      00 00 00100000 00900000
+I (29) boot:  5 ota_0            OTA app          00 10 00a00000 00600000
+I (29) boot:  6 ota_1            OTA app          00 11 01000000 00600000
+I (30) boot:  7 storage          Unknown data     01 82 01600000 00600000
+I (30) boot: End of partition table
+I (30) boot: Defaulting to factory image
+I (31) esp_image: segment 0: paddr=00100020 vaddr=3c030020 size=0a5d0h ( 42448) map
+I (37) esp_image: segment 1: paddr=0010a5f8 vaddr=3fc92000 size=02dc0h ( 11712) load
+I (40) esp_image: segment 2: paddr=0010d3c0 vaddr=40374000 size=02c58h ( 11352) load
+I (43) esp_image: segment 3: paddr=00110020 vaddr=42000020 size=2c7f0h (182256) map
+I (70) esp_image: segment 4: paddr=0013c818 vaddr=40376c58 size=0b308h ( 45832) load
+I (79) esp_image: segment 5: paddr=00147b28 vaddr=50000040 size=00020h (    32) load
+I (85) boot: Loaded app from partition at offset 0x100000
+I (85) boot: Disabling RNG early entropy source...
+I (86) cpu_start: Multicore app
+I (95) cpu_start: Pro cpu start user code
+I (95) cpu_start: cpu freq: 240000000 Hz
+I (95) app_init: Application information:
+I (96) app_init: Project name:     abi_test
+I (96) app_init: App version:      abe6f3b
+I (96) app_init: Compile time:     Nov 26 2026 23:03:31
+I (96) app_init: ELF file SHA256:  13fa545b0...
+I (96) app_init: ESP-IDF:          v5.5.5
+I (96) efuse_init: Min chip rev:     v0.0
+I (96) efuse_init: Max chip rev:     v0.99 
+I (97) efuse_init: Chip rev:         v0.2
+I (97) heap_init: Initializing. RAM available for dynamic allocation:
+I (97) heap_init: At 3FC95678 len 00054098 (336 KiB): RAM
+I (97) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (97) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (97) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (98) spi_flash: detected chip: gd
+I (98) spi_flash: flash io: qio
+I (98) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (99) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (99) main_task: Started on CPU0
+I (99) main_task: Calling app_main()
+ABI c->z B16 ret                 CRASH
+ABI BEGIN resume_from=48
+ABI c->z B17 first               FAIL
+ABI c->z B17 odd                 FAIL
+ABI c->z B17 late                FAIL
+ABI c->z B17 ret                 PASS
+ABI c->z B20 first               FAIL
+ABI c->z B20 odd                 FAIL
+ABI c->z B20 late                FAIL
+ABI c->z B20 ret                 PASS
+ABI c->z B24 first               FAIL
+ABI c->z B24 odd                 FAIL
+ABI c->z B24 late                FAIL
+ABI c->z B24 ret                 PASS
+ABI c->z B28 first               FAIL
+ABI c->z B28 odd                 FAIL
+ABI c->z B28 late                FAIL
+ABI c->z B28 ret                 PASS
+ABI c->z B32 first               FAIL
+ABI c->z B32 odd                 FAIL
+ABI c->z B32 late                FAIL
+ABI c->z B32 ret                 PASS
+ABI c->z A8 first                PASS
+ABI c->z A8 odd                  PASS
+ABI c->z A8 late                 PASS
+ABI c->z A8 ret                  PASS
+ABI c->z A16 first               FAIL
+ABI c->z A16 odd                 FAIL
+ABI c->z A16 late                FAIL
+Guru Meditation Error: Core  0 panic'ed (StoreProhibited). Exception was unhandled.
+
+Core  0 register dump:
+PC      : 0x42029b59  PS      : 0x00060c30  A0      : 0x82021113  A1      : 0x3fc99040  
+A2      : 0x00000028  A3      : 0x00000000  A4      : 0x44556694  A5      : 0x43b12233  
+A6      : 0x44556694  A7      : 0x3fc99040  A8      : 0x00000000  A9      : 0x3fc99030  
+A10     : 0x50000000  A11     : 0x3c035dcc  A12     : 0x00000000  A13     : 0x0000ff00  
+A14     : 0x00ff0000  A15     : 0xff000000  SAR     : 0x00000018  EXCCAUSE: 0x0000001d  
+EXCVADDR: 0x0000002c  LBEG    : 0x400557e1  LEND    : 0x400557e5  LCOUNT  : 0x00000000  
+
+
+Backtrace: 0x42029b56:0x3fc99040 0x42021110:0x3fc99060 0x42015d43:0x3fc99120 0x4202c13b:0x3fc99140 0x403799ed:0x3fc99170
+
+
+
+
+ELF file SHA256: 13fa545b0
+
+Rebooting...
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0x2b (SPI_FAST_FLASH_BOOT)
+Saved PC:0x40379120
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1710
+load:0x403c8700,len:0xed4
+load:0x403cb700,len:0x31d4
+entry 0x403c8954
+I (24) boot: ESP-IDF v5.5-beta1-215-gcf8dad0746-dirt 2nd stage bootloader
+I (24) boot: compile time Aug  4 2025 18:11:27
+I (24) boot: Multicore bootloader
+I (25) boot: chip revision: v0.2
+I (25) boot: efuse block revision: v1.3
+I (25) qio_mode: Enabling default flash chip QIO
+I (25) boot.esp32s3: Boot SPI Speed : 80MHz
+I (25) boot.esp32s3: SPI Mode       : QIO
+I (26) boot.esp32s3: SPI Flash Size : 32MB
+I (26) boot: Enabling RNG early entropy source...
+I (26) boot: Partition Table:
+I (26) boot: ## Label            Usage          Type ST Offset   Length
+I (27) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (27) boot:  1 otadata          OTA data         01 00 0000f000 00002000
+I (28) boot:  2 phy_init         RF data          01 01 00011000 00001000
+I (28) boot:  3 model            Unknown data     01 82 00012000 000ee000
+I (28) boot:  4 factory          factory app      00 00 00100000 00900000
+I (29) boot:  5 ota_0            OTA app          00 10 00a00000 00600000
+I (29) boot:  6 ota_1            OTA app          00 11 01000000 00600000
+I (30) boot:  7 storage          Unknown data     01 82 01600000 00600000
+I (30) boot: End of partition table
+I (30) boot: Defaulting to factory image
+I (31) esp_image: segment 0: paddr=00100020 vaddr=3c030020 size=0a5d0h ( 42448) map
+I (37) esp_image: segment 1: paddr=0010a5f8 vaddr=3fc92000 size=02dc0h ( 11712) load
+I (40) esp_image: segment 2: paddr=0010d3c0 vaddr=40374000 size=02c58h ( 11352) load
+I (43) esp_image: segment 3: paddr=00110020 vaddr=42000020 size=2c7f0h (182256) map
+I (70) esp_image: segment 4: paddr=0013c818 vaddr=40376c58 size=0b308h ( 45832) load
+I (79) esp_image: segment 5: paddr=00147b28 vaddr=50000040 size=00020h (    32) load
+I (85) boot: Loaded app from partition at offset 0x100000
+I (85) boot: Disabling RNG early entropy source...
+I (86) cpu_start: Multicore app
+I (95) cpu_start: Pro cpu start user code
+I (95) cpu_start: cpu freq: 240000000 Hz
+I (95) app_init: Application information:
+I (96) app_init: Project name:     abi_test
+I (96) app_init: App version:      abe6f3b
+I (96) app_init: Compile time:     Nov 26 2026 23:03:31
+I (96) app_init: ELF file SHA256:  13fa545b0...
+I (96) app_init: ESP-IDF:          v5.5.5
+I (96) efuse_init: Min chip rev:     v0.0
+I (96) efuse_init: Max chip rev:     v0.99 
+I (96) efuse_init: Chip rev:         v0.2
+I (97) heap_init: Initializing. RAM available for dynamic allocation:
+I (97) heap_init: At 3FC95678 len 00054098 (336 KiB): RAM
+I (97) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (97) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (97) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (98) spi_flash: detected chip: gd
+I (98) spi_flash: flash io: qio
+I (98) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (99) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (99) main_task: Started on CPU0
+I (99) main_task: Calling app_main()
+ABI c->z A16 ret                 CRASH
+ABI BEGIN resume_from=76
+ABI c->z A16b first              FAIL
+ABI c->z A16b odd                FAIL
+ABI c->z A16b late               FAIL
+Guru Meditation Error: Core  0 panic'ed (StoreProhibited). Exception was unhandled.
+
+Core  0 register dump:
+PC      : 0x42029b3d  PS      : 0x00060c30  A0      : 0x82021287  A1      : 0x3fc99040  
+A2      : 0x00000028  A3      : 0x00000000  A4      : 0x44556686  A5      : 0x43c12233  
+A6      : 0x00000000  A7      : 0x3fc99040  A8      : 0x00000000  A9      : 0x3fc99030  
+A10     : 0x50000000  A11     : 0x3c035e0c  A12     : 0x00000000  A13     : 0x0000ff00  
+A14     : 0x00ff0000  A15     : 0xff000000  SAR     : 0x00000011  EXCCAUSE: 0x0000001d  
+EXCVADDR: 0x00000034  LBEG    : 0x400557e1  LEND    : 0x400557e5  LCOUNT  : 0x00000000  
+
+
+Backtrace: 0x42029b3a:0x3fc99040 0x42021284:0x3fc99060 0x42015d43:0x3fc99120 0x4202c13b:0x3fc99140 0x403799ed:0x3fc99170
+
+
+
+
+ELF file SHA256: 13fa545b0
+
+Rebooting...
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0x2b (SPI_FAST_FLASH_BOOT)
+Saved PC:0x40379120
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1710
+load:0x403c8700,len:0xed4
+load:0x403cb700,len:0x31d4
+entry 0x403c8954
+I (24) boot: ESP-IDF v5.5-beta1-215-gcf8dad0746-dirt 2nd stage bootloader
+I (24) boot: compile time Aug  4 2025 18:11:27
+I (24) boot: Multicore bootloader
+I (25) boot: chip revision: v0.2
+I (25) boot: efuse block revision: v1.3
+I (25) qio_mode: Enabling default flash chip QIO
+I (25) boot.esp32s3: Boot SPI Speed : 80MHz
+I (25) boot.esp32s3: SPI Mode       : QIO
+I (26) boot.esp32s3: SPI Flash Size : 32MB
+I (26) boot: Enabling RNG early entropy source...
+I (26) boot: Partition Table:
+I (26) boot: ## Label            Usage          Type ST Offset   Length
+I (27) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (27) boot:  1 otadata          OTA data         01 00 0000f000 00002000
+I (28) boot:  2 phy_init         RF data          01 01 00011000 00001000
+I (28) boot:  3 model            Unknown data     01 82 00012000 000ee000
+I (28) boot:  4 factory          factory app      00 00 00100000 00900000
+I (29) boot:  5 ota_0            OTA app          00 10 00a00000 00600000
+I (29) boot:  6 ota_1            OTA app          00 11 01000000 00600000
+I (30) boot:  7 storage          Unknown data     01 82 01600000 00600000
+I (30) boot: End of partition table
+I (30) boot: Defaulting to factory image
+I (31) esp_image: segment 0: paddr=00100020 vaddr=3c030020 size=0a5d0h ( 42448) map
+I (37) esp_image: segment 1: paddr=0010a5f8 vaddr=3fc92000 size=02dc0h ( 11712) load
+I (40) esp_image: segment 2: paddr=0010d3c0 vaddr=40374000 size=02c58h ( 11352) load
+I (43) esp_image: segment 3: paddr=00110020 vaddr=42000020 size=2c7f0h (182256) map
+I (70) esp_image: segment 4: paddr=0013c818 vaddr=40376c58 size=0b308h ( 45832) load
+I (79) esp_image: segment 5: paddr=00147b28 vaddr=50000040 size=00020h (    32) load
+I (85) boot: Loaded app from partition at offset 0x100000
+I (85) boot: Disabling RNG early entropy source...
+I (86) cpu_start: Multicore app
+I (95) cpu_start: Pro cpu start user code
+I (95) cpu_start: cpu freq: 240000000 Hz
+I (95) app_init: Application information:
+I (96) app_init: Project name:     abi_test
+I (96) app_init: App version:      abe6f3b
+I (96) app_init: Compile time:     Nov 26 2026 23:03:31
+I (96) app_init: ELF file SHA256:  13fa545b0...
+I (96) app_init: ESP-IDF:          v5.5.5
+I (96) efuse_init: Min chip rev:     v0.0
+I (96) efuse_init: Max chip rev:     v0.99 
+I (97) efuse_init: Chip rev:         v0.2
+I (97) heap_init: Initializing. RAM available for dynamic allocation:
+I (97) heap_init: At 3FC95678 len 00054098 (336 KiB): RAM
+I (97) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (97) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (97) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (98) spi_flash: detected chip: gd
+I (98) spi_flash: flash io: qio
+I (98) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (99) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (99) main_task: Started on CPU0
+I (99) main_task: Calling app_main()
+ABI c->z A16b ret                CRASH
+ABI BEGIN resume_from=80
+ABI c->z M8 first                FAIL
+ABI c->z M8 odd                  FAIL
+ABI c->z M8 late                 FAIL
+Guru Meditation Error: Core  0 panic'ed (StoreProhibited). Exception was unhandled.
+
+Core  0 register dump:
+PC      : 0x42029b29  PS      : 0x00060c30  A0      : 0x820213c3  A1      : 0x3fc99040  
+A2      : 0x00000028  A3      : 0x00000000  A4      : 0xf0000000  A5      : 0x4180210c  
+A6      : 0x00000000  A7      : 0x3fc99040  A8      : 0x00000001  A9      : 0x3fc99030  
+A10     : 0x50000000  A11     : 0x3c035e44  A12     : 0x00000000  A13     : 0x0000ff00  
+A14     : 0x00ff0000  A15     : 0xff000000  SAR     : 0x0000000d  EXCCAUSE: 0x0000001d  
+EXCVADDR: 0x0000002c  LBEG    : 0x400557e1  LEND    : 0x400557e5  LCOUNT  : 0x00000000  
+
+
+Backtrace: 0x42029b26:0x3fc99040 0x420213c0:0x3fc99060 0x42015d43:0x3fc99120 0x4202c13b:0x3fc99140 0x403799ed:0x3fc99170
+
+
+
+
+ELF file SHA256: 13fa545b0
+
+Rebooting...
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0x2b (SPI_FAST_FLASH_BOOT)
+Saved PC:0x40379120
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1710
+load:0x403c8700,len:0xed4
+load:0x403cb700,len:0x31d4
+entry 0x403c8954
+I (24) boot: ESP-IDF v5.5-beta1-215-gcf8dad0746-dirt 2nd stage bootloader
+I (24) boot: compile time Aug  4 2025 18:11:27
+I (24) boot: Multicore bootloader
+I (25) boot: chip revision: v0.2
+I (25) boot: efuse block revision: v1.3
+I (25) qio_mode: Enabling default flash chip QIO
+I (25) boot.esp32s3: Boot SPI Speed : 80MHz
+I (25) boot.esp32s3: SPI Mode       : QIO
+I (26) boot.esp32s3: SPI Flash Size : 32MB
+I (26) boot: Enabling RNG early entropy source...
+I (26) boot: Partition Table:
+I (26) boot: ## Label            Usage          Type ST Offset   Length
+I (27) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (27) boot:  1 otadata          OTA data         01 00 0000f000 00002000
+I (28) boot:  2 phy_init         RF data          01 01 00011000 00001000
+I (28) boot:  3 model            Unknown data     01 82 00012000 000ee000
+I (28) boot:  4 factory          factory app      00 00 00100000 00900000
+I (29) boot:  5 ota_0            OTA app          00 10 00a00000 00600000
+I (29) boot:  6 ota_1            OTA app          00 11 01000000 00600000
+I (30) boot:  7 storage          Unknown data     01 82 01600000 00600000
+I (30) boot: End of partition table
+I (30) boot: Defaulting to factory image
+I (31) esp_image: segment 0: paddr=00100020 vaddr=3c030020 size=0a5d0h ( 42448) map
+I (37) esp_image: segment 1: paddr=0010a5f8 vaddr=3fc92000 size=02dc0h ( 11712) load
+I (40) esp_image: segment 2: paddr=0010d3c0 vaddr=40374000 size=02c58h ( 11352) load
+I (43) esp_image: segment 3: paddr=00110020 vaddr=42000020 size=2c7f0h (182256) map
+I (70) esp_image: segment 4: paddr=0013c818 vaddr=40376c58 size=0b308h ( 45832) load
+I (79) esp_image: segment 5: paddr=00147b28 vaddr=50000040 size=00020h (    32) load
+I (85) boot: Loaded app from partition at offset 0x100000
+I (85) boot: Disabling RNG early entropy source...
