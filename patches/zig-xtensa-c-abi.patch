@@ -1,0 +1,113 @@
+--- a/src/codegen/llvm/FuncGen.zig
++++ b/src/codegen/llvm/FuncGen.zig
+@@ -7316,6 +7316,19 @@
+                     else => .byref,
+                 };
+                 return .byval; // TODO
++            },
++            .xtensa_call0, .xtensa_windowed => {
++                it.zig_index += 1;
++                it.llvm_index += 1;
++                switch (xtensa_c_abi.classifyType(ty, zcu, &it.free_regs.gpr, .arg)) {
++                    .memory => {
++                        it.byval_attr = .{};
++                        return .byref;
++                    },
++                    .byval => return .byval,
++                    .i32_array => |size| return .{ .i32_array = size },
++                    .i64_array => |size| return .{ .i64_array = size },
++                }
+             },
+             .riscv64_lp64, .riscv32_ilp32 => {
+                 it.zig_index += 1;
+@@ -7615,6 +7628,9 @@
+                 .gpr = 6 - @as(u8, @intFromBool(has_sret)),
+                 .fpr = 8,
+             },
++            .xtensa_call0, .xtensa_windowed => .{
++                .gpr = xtensa_c_abi.max_arg_gprs - @as(u8, @intFromBool(has_sret)),
++            },
+             else => undefined,
+         },
+         .has_sret = has_sret,
+@@ -7668,6 +7684,15 @@
+             .integer => .{ .mem_cast = .i64 },
+             .double_integer => .{ .mem_cast = try o.builder.arrayType(2, .i64) },
+         },
++        .xtensa_call0, .xtensa_windowed => ret: {
++            var gprs_left: u8 = xtensa_c_abi.max_ret_gprs;
++            break :ret switch (xtensa_c_abi.classifyType(ret_ty, zcu, &gprs_left, .ret)) {
++                .memory => .sret,
++                .byval => .forceByVal(o, ret_ty),
++                .i32_array => |len| if (len == 1) .{ .mem_cast = .i32 } else .{ .mem_cast = try o.builder.arrayType(len, .i32) },
++                .i64_array => |len| .{ .mem_cast = try o.builder.arrayType(len, .i64) },
++            };
++        },
+         .arm_aapcs, .arm_aapcs_vfp => switch (arm_c_abi.classifyType(ret_ty, zcu, .ret)) {
+             .memory, .i64_array => .sret,
+             .i32_array => |len| if (len == 1) .{ .mem_cast = .i32 } else .sret,
+@@ -8534,6 +8559,7 @@
+ 
+ const aarch64_c_abi = @import("../aarch64/abi.zig");
+ const arm_c_abi = @import("../arm/abi.zig");
++const xtensa_c_abi = @import("../xtensa/abi.zig");
+ const loongarch_c_abi = @import("../loongarch/abi.zig");
+ const mips_c_abi = @import("../mips/abi.zig");
+ const riscv_c_abi = @import("../riscv64/abi.zig");
+--- /dev/null
++++ b/src/codegen/xtensa/abi.zig
+@@ -0,0 +1,54 @@
++//! Xtensa C ABI classification (windowed and call0).
++//!
++//! Aggregates are passed in up to 6 argument registers and returned in up to 4 registers,
++//! as one `i32`, an array of `i32`, or an array of `i64` for 8-byte aligned types. An
++//! aggregate that does not fit the remaining registers is passed on the stack, or returned
++//! through a hidden pointer. Scalars are left to LLVM.
++const std = @import("std");
++const Type = @import("../../Type.zig");
++const Zcu = @import("../../Zcu.zig");
++
++pub const max_arg_gprs = 6;
++pub const max_ret_gprs = 4;
++
++pub const Class = union(enum) {
++    memory,
++    byval,
++    i32_array: u8,
++    i64_array: u8,
++};
++
++pub const Context = enum { ret, arg };
++
++/// `gprs_left` is the number of argument registers still free before this type, and is
++/// decreased by the registers this type consumes.
++pub fn classifyType(ty: Type, zcu: *Zcu, gprs_left: *u8, ctx: Context) Class {
++    const max_gprs: u8 = switch (ctx) {
++        .arg => max_arg_gprs,
++        .ret => max_ret_gprs,
++    };
++    const size_bits = ty.abiSize(zcu) * 8;
++    const align_bits = ty.abiAlignment(zcu).toByteUnits().? * 8;
++
++    var needed: u64 = std.math.divCeil(u64, size_bits, 32) catch unreachable;
++    if (align_bits == 64) needed += gprs_left.* % 2;
++    const must_use_stack = needed > gprs_left.* or
++        align_bits > 128 or
++        (gprs_left.* < max_gprs and align_bits == 128);
++    if (must_use_stack) needed = gprs_left.*;
++    gprs_left.* -= @intCast(needed);
++
++    const is_aggregate = switch (ty.zigTypeTag(zcu)) {
++        .@"struct" => ty.containerLayout(zcu) != .@"bitpack",
++        .@"union" => zcu.typeToUnion(ty).?.layout != .@"bitpack",
++        else => false,
++    };
++    if (!is_aggregate) {
++        if (ctx == .ret and size_bits > max_ret_gprs * 32) return .memory;
++        return .byval;
++    }
++    if (must_use_stack) return .memory;
++    if (size_bits <= 32) return .{ .i32_array = 1 };
++    if (align_bits == 64) return .{ .i64_array = @intCast(std.math.divCeil(u64, size_bits, 64) catch unreachable) };
++    return .{ .i32_array = @intCast(std.math.divCeil(u64, size_bits, 32) catch unreachable) };
++}
