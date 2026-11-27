@@ -56,6 +56,18 @@ D16    |         .      .      .      .    |         .      .      .      .
 
 In the Zig source (`x-zig-master` tarball, `src/codegen/llvm/FuncGen.zig`), `fnReturnStrat` (line 7646) and `ParamTypeIterator` (line 7090) have per-architecture C ABI classification for aarch64, arm, loongarch, mips, powerpc64, riscv, s390x and x86, and no Xtensa case; `grep -n xtensa src/codegen/llvm/FuncGen.zig` finds nothing. Xtensa falls into the generic path. `xtensa_windowed` and `xtensa_call0` exist as calling convention names (`src/codegen/llvm.zig`, line 4320) and map to the default LLVM calling convention. The rule that GCC applies for returns (up to 16 bytes in `a2`..`a5`, larger through a hidden pointer) is taken from the observed behaviour here, not from the ABI documentation.
 
+## C ABI patch
+`patches/zig-xtensa-c-abi.patch` applies with `patch -p1` to the Zig source of the build above (0.18.0-dev.1279+81de6a1c6). It adds `src/codegen/xtensa/abi.zig` and the `xtensa_call0`/`xtensa_windowed` cases in `FuncGen.zig`. The classification follows the rules in rustc's `compiler/rustc_target/src/callconv/xtensa.rs`; unlike that file, a hidden return pointer counts as one of the six argument registers.
+
+QEMU, `ReleaseFast`, all 257 cases (`results/qemu-ReleaseFast.txt` before, `results/qemu-ReleaseFast-patched.txt` after):
+
+| | PASS | FAIL | CRASH |
+|---|---|---|---|
+| unpatched | 94 | 152 | 11 |
+| patched | 256 | 1 | 0 |
+
+Every case that passed before still passes. The remaining failure is `c->z zig variadic callee`, which also fails unpatched; its cause is not analysed. Not tested with the patched compiler: real hardware, `ReleaseSafe`, vector types, call0. The sections above describe the unpatched compiler.
+
 ## Optimization modes
 | Mode | Result |
 |---|---|
