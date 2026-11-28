@@ -68,6 +68,9 @@ QEMU, `ReleaseFast`, all 257 cases (`results/qemu-ReleaseFast.txt` before, `resu
 
 Every case that passed before still passes. The remaining failure is `c->z zig variadic callee`, which also fails unpatched; its cause is not analysed. Not tested with the patched compiler: real hardware, `ReleaseSafe`, vector types, call0. The sections above describe the unpatched compiler.
 
+### `ReleaseSafe` and variadic callees
+With the ABI patch alone, `ReleaseSafe` gives 256 PASS and 1 FAIL, the same case as `ReleaseFast`. With the ABI patch and a partial fix of `LowerVAARG` in LLVM 23.1.6 (later stack arguments no longer reset the index), a longer variadic case was added; both modes give 256 PASS and 2 FAIL (`results/qemu-ReleaseFast-patched.txt`, `results/qemu-ReleaseSafe-patched.txt`, 258 cases), the two failures being the Zig variadic callees.
+
 ## Optimization modes
 | Mode | Result |
 |---|---|

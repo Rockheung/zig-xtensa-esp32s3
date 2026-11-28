@@ -197,6 +197,8 @@ static void c_run(void)
     CHECK("return struct double2", rd.a == ed.a && rd.b == ed.b);
     CHECK("callback c fn in zig", z_apply(c_args8) == c_args8(1, 2, 3, 4, 5, 6, 7, 8));
     CHECK("zig variadic callee", z_vsum(6, 1, (int64_t)2, 3.5, 4, (int64_t)5, 6.5) == 22.0);
+    CHECK("zig variadic callee long", z_vsum(15, 1, (int64_t)2, 3.5, 4, (int64_t)5, 6.5, 7, (int64_t)8, 9.5,
+                                             10, (int64_t)11, 12.5, 13, (int64_t)14, 15.5) == 122.0);
     CHECK("stack align nest 5", (c_align(5) | z_align(5)) == 0);
     CHECK("bitfield raw", z_bf_raw() == c_bf_raw());
 }
