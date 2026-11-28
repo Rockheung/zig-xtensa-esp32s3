@@ -103,10 +103,8 @@ S16 c_ret16(uint32_t a) { return (S16){a, a + 1, a + 2, a + 3}; }
 S24 c_ret24(uint32_t a) { return (S24){{a, a + 1, a + 2, a + 3, a + 4, a + 5}}; }
 D16 c_retd(double a) { return (D16){a, a * 2}; }
 int32_t c_apply(cb8_t cb) { return cb(1, 2, 3, 4, 5, 6, 7, 8); }
-double c_vsum(int n, ...)
+double c_vsum_va(int n, va_list ap)
 {
-    va_list ap;
-    va_start(ap, n);
     double sum = 0;
     for (int i = 0; i < n; i++) {
         switch (i % 3) {
@@ -115,6 +113,13 @@ double c_vsum(int n, ...)
         default: sum += va_arg(ap, double); break;
         }
     }
+    return sum;
+}
+double c_vsum(int n, ...)
+{
+    va_list ap;
+    va_start(ap, n);
+    double sum = c_vsum_va(n, ap);
     va_end(ap);
     return sum;
 }
@@ -159,6 +164,7 @@ extern S24 z_ret24(uint32_t);
 extern D16 z_ret_d(double);
 extern int32_t z_apply(cb8_t);
 extern double z_vsum(int, ...);
+extern double z_vfwd(int, ...);
 extern uint32_t z_bf_raw(void);
 extern void z_run(void);
 extern void z_sweep(void);
@@ -196,7 +202,13 @@ static void c_run(void)
     D16 rd = z_ret_d(1.25), ed = c_retd(1.25);
     CHECK("return struct double2", rd.a == ed.a && rd.b == ed.b);
     CHECK("callback c fn in zig", z_apply(c_args8) == c_args8(1, 2, 3, 4, 5, 6, 7, 8));
+    CHECK("c variadic control", c_vsum(15, 1, (int64_t)2, 3.5, 4, (int64_t)5, 6.5, 7, (int64_t)8, 9.5,
+                                       10, (int64_t)11, 12.5, 13, (int64_t)14, 15.5) == 122.5);
     CHECK("zig variadic callee", z_vsum(6, 1, (int64_t)2, 3.5, 4, (int64_t)5, 6.5) == 22.0);
+    CHECK("zig variadic callee long", z_vsum(15, 1, (int64_t)2, 3.5, 4, (int64_t)5, 6.5, 7, (int64_t)8, 9.5,
+                                             10, (int64_t)11, 12.5, 13, (int64_t)14, 15.5) == 122.5);
+    CHECK("zig va_list to c", z_vfwd(15, 1, (int64_t)2, 3.5, 4, (int64_t)5, 6.5, 7, (int64_t)8, 9.5,
+                                     10, (int64_t)11, 12.5, 13, (int64_t)14, 15.5) == 122.5);
     CHECK("stack align nest 5", (c_align(5) | z_align(5)) == 0);
     CHECK("bitfield raw", z_bf_raw() == c_bf_raw());
 }

@@ -1,0 +1,321 @@
+Adding SPI flash device
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x4 (SPI_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x14f0
+load:0x403c8700,len:0xd24
+load:0x403cb700,len:0x2eec
+entry 0x403c8924
+I (12) boot: ESP-IDF v5.5.5 2nd stage bootloader
+I (13) boot: compile time Nov 28 2026 20:57:13
+I (13) boot: Multicore bootloader
+I (15) boot: chip revision: v0.0
+I (15) boot: efuse block revision: v0.0
+I (16) boot.esp32s3: Boot SPI Speed : 80MHz
+I (16) boot.esp32s3: SPI Mode       : SLOW READ
+I (16) boot.esp32s3: SPI Flash Size : 4MB
+I (17) boot: Enabling RNG early entropy source...
+I (20) boot: Partition Table:
+I (20) boot: ## Label            Usage          Type ST Offset   Length
+I (20) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (20) boot:  1 phy_init         RF data          01 01 0000f000 00001000
+I (20) boot:  2 factory          factory app      00 00 00010000 00100000
+I (20) boot: End of partition table
+I (21) esp_image: segment 0: paddr=00010020 vaddr=3c030020 size=0b188h ( 45448) map
+I (24) esp_image: segment 1: paddr=0001b1b0 vaddr=3fc92500 size=02f50h ( 12112) load
+I (25) esp_image: segment 2: paddr=0001e108 vaddr=40374000 size=01f10h (  7952) load
+I (26) esp_image: segment 3: paddr=00020020 vaddr=42000020 size=2eebch (192188) map
+I (36) esp_image: segment 4: paddr=0004eee4 vaddr=40375f10 size=0c4f8h ( 50424) load
+I (39) esp_image: segment 5: paddr=0005b3e4 vaddr=50000040 size=00020h (    32) load
+I (40) boot: Loaded app from partition at offset 0x10000
+I (40) boot: Disabling RNG early entropy source...
+W (98) rtcinit: o_code calibration fail
+
+I (51) cpu_start: Multicore app
+I (61) cpu_start: GPIO 44 and 43 are used as console UART I/O pins
+I (61) cpu_start: Pro cpu start user code
+I (61) cpu_start: cpu freq: 240000000 Hz
+I (61) app_init: Application information:
+I (61) app_init: Project name:     abi_test
+I (61) app_init: App version:      0cdac84-dirty
+I (61) app_init: Compile time:     Nov 28 2026 20:57:06
+I (61) app_init: ELF file SHA256:  00ee36649...
+I (61) app_init: ESP-IDF:          v5.5.5
+I (61) efuse_init: Min chip rev:     v0.0
+I (62) efuse_init: Max chip rev:     v0.99 
+I (62) efuse_init: Chip rev:         v0.0
+I (62) heap_init: Initializing. RAM available for dynamic allocation:
+I (62) heap_init: At 3FC95D38 len 000539D8 (334 KiB): RAM
+I (62) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (62) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (62) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (63) spi_flash: detected chip: gd
+I (63) spi_flash: flash io: dio
+I (63) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (64) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (64) main_task: Started on CPU0
+I (64) main_task: Calling app_main()
+ABI BEGIN resume_from=0
+ABI c->z args10                  PASS
+ABI c->z mix64                   PASS
+ABI c->z f32                     PASS
+ABI c->z f64                     PASS
+ABI c->z struct3 by value        PASS
+ABI c->z struct8/12 by value     PASS
+ABI c->z struct16/16a by value   PASS
+ABI c->z struct double2 by value PASS
+ABI c->z struct24 by value       PASS
+ABI c->z return struct3          PASS
+ABI c->z return struct8          PASS
+ABI c->z return struct16         PASS
+ABI c->z return struct24         PASS
+ABI c->z return struct double2   PASS
+ABI c->z callback c fn in zig    PASS
+ABI c->z c variadic control      PASS
+ABI c->z zig variadic callee     PASS
+ABI c->z zig variadic callee long PASS
+ABI c->z zig va_list to c        PASS
+ABI c->z stack align nest 5      PASS
+ABI c->z bitfield raw            PASS
+ABI z->c args10                  PASS
+ABI z->c mix64                   PASS
+ABI z->c f32                     PASS
+ABI z->c f64                     PASS
+ABI z->c struct3 by value        PASS
+ABI z->c struct8/12 by value     PASS
+ABI z->c struct16/16a by value   PASS
+ABI z->c struct double2 by value PASS
+ABI z->c struct24 by value       PASS
+ABI z->c return struct3          PASS
+ABI z->c return struct8          PASS
+ABI z->c return struct16         PASS
+ABI z->c return struct24         PASS
+ABI z->c return struct double2   PASS
+ABI z->c callback zig fn in c    PASS
+ABI z->c c variadic callee       PASS
+ABI z stack align nest 5         PASS
+ABI z bitfield raw               PASS
+ABI layout S3b size/align        PASS
+ABI layout S8/S12/S24 size       PASS
+ABI layout S16a                  PASS
+ABI layout D16                   PASS
+ABI layout BF size               PASS
+ABI c->z B1 first                PASS
+ABI c->z B1 odd                  PASS
+ABI c->z B1 late                 PASS
+ABI c->z B1 ret                  PASS
+ABI c->z B2 first                PASS
+ABI c->z B2 odd                  PASS
+ABI c->z B2 late                 PASS
+ABI c->z B2 ret                  PASS
+ABI c->z B3 first                PASS
+ABI c->z B3 odd                  PASS
+ABI c->z B3 late                 PASS
+ABI c->z B3 ret                  PASS
+ABI c->z B4 first                PASS
+ABI c->z B4 odd                  PASS
+ABI c->z B4 late                 PASS
+ABI c->z B4 ret                  PASS
+ABI c->z B5 first                PASS
+ABI c->z B5 odd                  PASS
+ABI c->z B5 late                 PASS
+ABI c->z B5 ret                  PASS
+ABI c->z B6 first                PASS
+ABI c->z B6 odd                  PASS
+ABI c->z B6 late                 PASS
+ABI c->z B6 ret                  PASS
+ABI c->z B7 first                PASS
+ABI c->z B7 odd                  PASS
+ABI c->z B7 late                 PASS
+ABI c->z B7 ret                  PASS
+ABI c->z B8 first                PASS
+ABI c->z B8 odd                  PASS
+ABI c->z B8 late                 PASS
+ABI c->z B8 ret                  PASS
+ABI c->z B9 first                PASS
+ABI c->z B9 odd                  PASS
+ABI c->z B9 late                 PASS
+ABI c->z B9 ret                  PASS
+ABI c->z B12 first               PASS
+ABI c->z B12 odd                 PASS
+ABI c->z B12 late                PASS
+ABI c->z B12 ret                 PASS
+ABI c->z B13 first               PASS
+ABI c->z B13 odd                 PASS
+ABI c->z B13 late                PASS
+ABI c->z B13 ret                 PASS
+ABI c->z B16 first               PASS
+ABI c->z B16 odd                 PASS
+ABI c->z B16 late                PASS
+ABI c->z B16 ret                 PASS
+ABI c->z B17 first               PASS
+ABI c->z B17 odd                 PASS
+ABI c->z B17 late                PASS
+ABI c->z B17 ret                 PASS
+ABI c->z B20 first               PASS
+ABI c->z B20 odd                 PASS
+ABI c->z B20 late                PASS
+ABI c->z B20 ret                 PASS
+ABI c->z B24 first               PASS
+ABI c->z B24 odd                 PASS
+ABI c->z B24 late                PASS
+ABI c->z B24 ret                 PASS
+ABI c->z B28 first               PASS
+ABI c->z B28 odd                 PASS
+ABI c->z B28 late                PASS
+ABI c->z B28 ret                 PASS
+ABI c->z B32 first               PASS
+ABI c->z B32 odd                 PASS
+ABI c->z B32 late                PASS
+ABI c->z B32 ret                 PASS
+ABI c->z A8 first                PASS
+ABI c->z A8 odd                  PASS
+ABI c->z A8 late                 PASS
+ABI c->z A8 ret                  PASS
+ABI c->z A16 first               PASS
+ABI c->z A16 odd                 PASS
+ABI c->z A16 late                PASS
+ABI c->z A16 ret                 PASS
+ABI c->z A16b first              PASS
+ABI c->z A16b odd                PASS
+ABI c->z A16b late               PASS
+ABI c->z A16b ret                PASS
+ABI c->z M8 first                PASS
+ABI c->z M8 odd                  PASS
+ABI c->z M8 late                 PASS
+ABI c->z M8 ret                  PASS
+ABI c->z M12 first               PASS
+ABI c->z M12 odd                 PASS
+ABI c->z M12 late                PASS
+ABI c->z M12 ret                 PASS
+ABI c->z F4 first                PASS
+ABI c->z F4 odd                  PASS
+ABI c->z F4 late                 PASS
+ABI c->z F4 ret                  PASS
+ABI c->z F8 first                PASS
+ABI c->z F8 odd                  PASS
+ABI c->z F8 late                 PASS
+ABI c->z F8 ret                  PASS
+ABI c->z F12 first               PASS
+ABI c->z F12 odd                 PASS
+ABI c->z F12 late                PASS
+ABI c->z F12 ret                 PASS
+ABI c->z D8 first                PASS
+ABI c->z D8 odd                  PASS
+ABI c->z D8 late                 PASS
+ABI c->z D8 ret                  PASS
+ABI c->z D16 first               PASS
+ABI c->z D16 odd                 PASS
+ABI c->z D16 late                PASS
+ABI c->z D16 ret                 PASS
+ABI z->c B1 first                PASS
+ABI z->c B1 odd                  PASS
+ABI z->c B1 late                 PASS
+ABI z->c B1 ret                  PASS
+ABI z->c B2 first                PASS
+ABI z->c B2 odd                  PASS
+ABI z->c B2 late                 PASS
+ABI z->c B2 ret                  PASS
+ABI z->c B3 first                PASS
+ABI z->c B3 odd                  PASS
+ABI z->c B3 late                 PASS
+ABI z->c B3 ret                  PASS
+ABI z->c B4 first                PASS
+ABI z->c B4 odd                  PASS
+ABI z->c B4 late                 PASS
+ABI z->c B4 ret                  PASS
+ABI z->c B5 first                PASS
+ABI z->c B5 odd                  PASS
+ABI z->c B5 late                 PASS
+ABI z->c B5 ret                  PASS
+ABI z->c B6 first                PASS
+ABI z->c B6 odd                  PASS
+ABI z->c B6 late                 PASS
+ABI z->c B6 ret                  PASS
+ABI z->c B7 first                PASS
+ABI z->c B7 odd                  PASS
+ABI z->c B7 late                 PASS
+ABI z->c B7 ret                  PASS
+ABI z->c B8 first                PASS
+ABI z->c B8 odd                  PASS
+ABI z->c B8 late                 PASS
+ABI z->c B8 ret                  PASS
+ABI z->c B9 first                PASS
+ABI z->c B9 odd                  PASS
+ABI z->c B9 late                 PASS
+ABI z->c B9 ret                  PASS
+ABI z->c B12 first               PASS
+ABI z->c B12 odd                 PASS
+ABI z->c B12 late                PASS
+ABI z->c B12 ret                 PASS
+ABI z->c B13 first               PASS
+ABI z->c B13 odd                 PASS
+ABI z->c B13 late                PASS
+ABI z->c B13 ret                 PASS
+ABI z->c B16 first               PASS
+ABI z->c B16 odd                 PASS
+ABI z->c B16 late                PASS
+ABI z->c B16 ret                 PASS
+ABI z->c B17 first               PASS
+ABI z->c B17 odd                 PASS
+ABI z->c B17 late                PASS
+ABI z->c B17 ret                 PASS
+ABI z->c B20 first               PASS
+ABI z->c B20 odd                 PASS
+ABI z->c B20 late                PASS
+ABI z->c B20 ret                 PASS
+ABI z->c B24 first               PASS
+ABI z->c B24 odd                 PASS
+ABI z->c B24 late                PASS
+ABI z->c B24 ret                 PASS
+ABI z->c B28 first               PASS
+ABI z->c B28 odd                 PASS
+ABI z->c B28 late                PASS
+ABI z->c B28 ret                 PASS
+ABI z->c B32 first               PASS
+ABI z->c B32 odd                 PASS
+ABI z->c B32 late                PASS
+ABI z->c B32 ret                 PASS
+ABI z->c A8 first                PASS
+ABI z->c A8 odd                  PASS
+ABI z->c A8 late                 PASS
+ABI z->c A8 ret                  PASS
+ABI z->c A16 first               PASS
+ABI z->c A16 odd                 PASS
+ABI z->c A16 late                PASS
+ABI z->c A16 ret                 PASS
+ABI z->c A16b first              PASS
+ABI z->c A16b odd                PASS
+ABI z->c A16b late               PASS
+ABI z->c A16b ret                PASS
+ABI z->c M8 first                PASS
+ABI z->c M8 odd                  PASS
+ABI z->c M8 late                 PASS
+ABI z->c M8 ret                  PASS
+ABI z->c M12 first               PASS
+ABI z->c M12 odd                 PASS
+ABI z->c M12 late                PASS
+ABI z->c M12 ret                 PASS
+ABI z->c F4 first                PASS
+ABI z->c F4 odd                  PASS
+ABI z->c F4 late                 PASS
+ABI z->c F4 ret                  PASS
+ABI z->c F8 first                PASS
+ABI z->c F8 odd                  PASS
+ABI z->c F8 late                 PASS
+ABI z->c F8 ret                  PASS
+ABI z->c F12 first               PASS
+ABI z->c F12 odd                 PASS
+ABI z->c F12 late                PASS
+ABI z->c F12 ret                 PASS
+ABI z->c D8 first                PASS
+ABI z->c D8 odd                  PASS
+ABI z->c D8 late                 PASS
+ABI z->c D8 ret                  PASS
+ABI z->c D16 first               PASS
+ABI z->c D16 odd                 PASS
+ABI z->c D16 late                PASS
+ABI z->c D16 ret                 PASS
+ABI DONE pass=260 fail=0

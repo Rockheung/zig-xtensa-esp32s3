@@ -1,0 +1,80 @@
+--- a/llvm/lib/Target/Xtensa/XtensaISelLowering.cpp
++++ b/llvm/lib/Target/Xtensa/XtensaISelLowering.cpp
+@@ -583,7 +583,15 @@
+       // to the vararg save area.
+       for (unsigned I = Idx; I < ArgRegsNum; ++I, VaArgOffset += RegSize) {
+         const Register Reg = RegInfo.createVirtualRegister(RC);
+-        RegInfo.addLiveIn(IntRegs[I], Reg);
++        MCRegister PhysReg = IntRegs[I];
++        MCRegister FrameReg = Subtarget.getRegisterInfo()->getFrameRegister(MF);
++        // The prologue overwrites the frame register before the store below
++        // runs, so read its incoming value from A8.
++        if (Subtarget.isWindowedABI() && PhysReg == FrameReg) {
++          PhysReg = Xtensa::A8;
++          XtensaFI->setSaveFrameRegister();
++        }
++        RegInfo.addLiveIn(PhysReg, Reg);
+ 
+         SDValue ArgValue = DAG.getCopyFromReg(Chain, DL, Reg, RegTy);
+         FI = MFI.CreateFixedObject(RegSize, VaArgOffset, true);
+@@ -1271,8 +1279,11 @@
+   SDValue NextPtr =
+       DAG.getObjectPtrOffset(DL, Addr, TypeSize::getFixed(NextOffset));
+ 
+-  // Store pointer to arguments given on registers (va_reg)
+-  SDValue StoreRegPtr = DAG.getStore(StoreStackPtr, DL, FrameIndex, NextPtr,
++  // Store pointer to arguments given on registers (va_reg). va_ndx counts from
++  // the first argument register, so va_reg points where that register would be.
++  SDValue RegPtr = DAG.getNode(ISD::SUB, DL, PtrVT, FrameIndex,
++                               DAG.getConstant(ArgWords * 4, DL, PtrVT));
++  SDValue StoreRegPtr = DAG.getStore(StoreStackPtr, DL, RegPtr, NextPtr,
+                                      MachinePointerInfo(SV, NextOffset));
+   NextOffset += FrameOffset;
+   NextPtr = DAG.getObjectPtrOffset(DL, Addr, TypeSize::getFixed(NextOffset));
+@@ -1310,8 +1321,10 @@
+   const Value *SV = cast<SrcValueSDNode>(Node->getOperand(2))->getValue();
+   SDLoc DL(Node);
+   auto &TD = DAG.getDataLayout();
+-  Align ArgAlignment = TD.getABITypeAlign(Ty);
+-  unsigned ArgAlignInBytes = ArgAlignment.value();
++  // A type split by legalization (i64 into two i32) carries the alignment of
++  // the original type in operand 3.
++  unsigned ArgAlignInBytes = std::max<unsigned>(
++      TD.getABITypeAlign(Ty).value(), Node->getConstantOperandVal(3));
+   unsigned ArgSizeInBytes = TD.getTypeAllocSize(Ty);
+   unsigned VASizeInBytes = llvm::alignTo(ArgSizeInBytes, 4);
+ 
+@@ -1347,22 +1360,20 @@
+   VAIndex = DAG.getNode(ISD::ADD, DL, PtrVT, OrigIndex,
+                         DAG.getConstant(VASizeInBytes, DL, MVT::i32));
+ 
+-  SDValue CC = DAG.getSetCC(DL, MVT::i32, OrigIndex,
+-                            DAG.getConstant(6 * 4, DL, MVT::i32), ISD::SETLE);
++  // The first argument that does not fit in the registers moves the index to
++  // the start of the stack area; later stack arguments just advance it.
++  SDValue RegsEnd = DAG.getConstant(6 * 4, DL, MVT::i32);
++  SDValue InRegs = DAG.getSetCC(DL, MVT::i32, VAIndex, RegsEnd, ISD::SETLE);
++  SDValue FirstOnStack =
++      DAG.getSetCC(DL, MVT::i32, OrigIndex, RegsEnd, ISD::SETLE);
+ 
+-  SDValue StkIndex =
+-      DAG.getNode(ISD::ADD, DL, PtrVT, VAIndex,
+-                  DAG.getConstant(32 + VASizeInBytes, DL, MVT::i32));
+-
+-  CC = DAG.getSetCC(DL, MVT::i32, VAIndex, DAG.getConstant(6 * 4, DL, MVT::i32),
+-                    ISD::SETLE);
++  SDValue StkIndex = DAG.getNode(
++      ISD::SELECT, DL, MVT::i32, FirstOnStack,
++      DAG.getConstant(32 + VASizeInBytes, DL, MVT::i32), VAIndex);
+ 
+-  SDValue Array = DAG.getNode(ISD::SELECT, DL, MVT::i32, CC, VAReg, VAStack);
+-
+-  VAIndex = DAG.getNode(ISD::SELECT, DL, MVT::i32, CC, VAIndex, StkIndex);
++  SDValue Array = DAG.getNode(ISD::SELECT, DL, MVT::i32, InRegs, VAReg, VAStack);
+ 
+-  CC = DAG.getSetCC(DL, MVT::i32, VAIndex, DAG.getConstant(6 * 4, DL, MVT::i32),
+-                    ISD::SETLE);
++  VAIndex = DAG.getNode(ISD::SELECT, DL, MVT::i32, InRegs, VAIndex, StkIndex);
+ 
+   SDValue VAIndexStore = DAG.getStore(InChain, DL, VAIndex, VarArgIndexPtr,
+                                       MachinePointerInfo(SV));

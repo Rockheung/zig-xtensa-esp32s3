@@ -66,7 +66,12 @@ QEMU, `ReleaseFast`, all 257 cases (`results/qemu-ReleaseFast.txt` before, `resu
 | unpatched | 94 | 152 | 11 |
 | patched | 256 | 1 | 0 |
 
-Every case that passed before still passes. The remaining failure is `c->z zig variadic callee`, which also fails unpatched; its cause is not analysed. Not tested with the patched compiler: real hardware, `ReleaseSafe`, vector types, call0. The sections above describe the unpatched compiler.
+Every case that passed before still passes. The remaining failure is `c->z zig variadic callee`, which also fails unpatched (see below). The sections above describe the unpatched compiler.
+
+### Variadic callees
+`patches/llvm-23.1.6-xtensa-vaarg.patch` (LLVM 23.1.6, `XtensaISelLowering.cpp`) fixes four defects: later stack arguments reset `va_ndx`; `va_start` stored `va_reg` relative to the first variadic argument instead of `a2`; the incoming `a7` was saved after the prologue had overwritten it; 8-byte alignment was lost for `i64`/`double` split into two `i32`. With both patches, QEMU `ReleaseFast` and `ReleaseSafe` pass all 260 cases (`results/qemu-ReleaseFast-patched.txt`, `results/qemu-ReleaseSafe-patched.txt`), including passing a Zig `va_list` to a GCC function. Not tested with the patched compiler: real hardware, vector types, call0, variadic arguments larger than 8 bytes.
+
+`qemu_build_run.sh` removes the build directory first, because CMake keeps the `ZIG` path from the first configure.
 
 ## Optimization modes
 | Mode | Result |
