@@ -1,3 +1,4 @@
+const std = @import("std");
 comptime {
     _ = @import("abi_sweep.zig");
 }
@@ -30,6 +31,7 @@ extern fn c_ret24(u32) S24;
 extern fn c_retd(f64) D16;
 extern fn c_apply(Cb8) i32;
 extern fn c_vsum(n: c_int, ...) f64;
+extern fn c_vsum_va(n: c_int, ap: std.builtin.VaList) f64;
 extern fn c_align(depth: c_int) u32;
 extern fn c_bf_raw() u32;
 extern const c_layout: [11]u32;
@@ -83,6 +85,11 @@ export fn z_ret_d(a: f64) D16 {
 }
 export fn z_apply(cb: Cb8) i32 {
     return cb(1, 2, 3, 4, 5, 6, 7, 8);
+}
+export fn z_vfwd(n: c_int, ...) callconv(.c) f64 {
+    var ap = @cVaStart();
+    defer @cVaEnd(&ap);
+    return c_vsum_va(n, ap);
 }
 export fn z_vsum(n: c_int, ...) callconv(.c) f64 {
     var ap = @cVaStart();
